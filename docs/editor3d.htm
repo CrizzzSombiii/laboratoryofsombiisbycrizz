@@ -3,4 +3,12 @@ scene=new THREE.Scene()
 camera=new THREE.PerspectiveCamera(75,1,0.1,1000)
 renderer=new THREE.WebGLRenderer()
 document.body.appendChild(renderer.domElement())
+render=()=>{
+  renderer.setSize(innerWidth,innerHeight)
+  camera.aspect=innerWidth/innerHeight
+  camera.updateProjectionMatrix()
+  renderer.render(scene,camera)
+  requestAnimationFrame(render)
+}
+render()
 </script>
