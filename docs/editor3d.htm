@@ -1,4 +1,4 @@
-<div style="position: absolute; left: 0px; top: 0px; width:1400px; height:1px; color:rgb(255,255,255)">
+<div style="position: absolute; left: 0px; top: 0px;color:rgb(255,255,255)">
 <input id="red"type="number"><br>
 <input id="green"type="number"><br>
 <input id="blue"type="number"><br>
@@ -6,7 +6,7 @@
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/91/three.js"></script><script>
 render=()=>{
-  renderer.setSize(innerWidth-32,innerHeight-32)
+  renderer.setSize(innerWidth,innerHeight)
   camera.aspect=innerWidth/innerHeight
   camera.updateProjectionMatrix()
   renderer.render(scene,camera)
