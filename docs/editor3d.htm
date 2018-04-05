@@ -1,8 +1,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/91/three.js"></script><script>
 scene=new THREE.Scene()
 camera=new THREE.PerspectiveCamera(75,1,0.1,1000)
-renderer=new THREE.WebGLRenderer()
-document.body.appendChild(renderer.domElement)
 render=()=>{
   renderer.setSize(innerWidth,innerHeight)
   camera.aspect=innerWidth/innerHeight
@@ -10,5 +8,9 @@ render=()=>{
   renderer.render(scene,camera)
   requestAnimationFrame(render)
 }
+setTimeout(()=>{
+renderer=new THREE.WebGLRenderer()
+document.body.appendChild(renderer.domElement)
 render()
+},1)
 </script>
