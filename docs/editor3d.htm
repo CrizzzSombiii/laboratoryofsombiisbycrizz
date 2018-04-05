@@ -6,7 +6,7 @@
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/91/three.js"></script><script>
 render=()=>{
-  renderer.setSize(innerWidth,innerHeight)
+  renderer.setSize(innerWidth-32,innerHeight-32)
   camera.aspect=innerWidth/innerHeight
   camera.updateProjectionMatrix()
   renderer.render(scene,camera)
