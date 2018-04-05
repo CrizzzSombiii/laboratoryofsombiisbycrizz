@@ -8,7 +8,7 @@ render=()=>{
 }
 setTimeout(()=>{
 scene=new THREE.Scene()
-scene.background=new THREE.Color("rgb(100,100,100)")
+scene.background=new THREE.Color("rgb("+prompt("Enter red value.")+","+prompt("Enter green value.")+","+prompt("Enter blue value.")+")")
 camera=new THREE.PerspectiveCamera(75,1,0.1,1000)
 document.body.style.margin=0
 renderer=new THREE.WebGLRenderer()
