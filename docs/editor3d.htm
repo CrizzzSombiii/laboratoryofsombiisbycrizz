@@ -1,3 +1,9 @@
+<div style="position: absolute; left: 0px; top: 0px; width:1400px; height:1px; background-color: rgb(0,0,0); color:rgb(255,255,255)">
+<input id="red"type="number"><br>
+<input id="green"type="number"><br>
+<input id="blue"type="number"><br>
+<input id="reset"value="Reset."type="button"size="70"></input><br>
+</div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/91/three.js"></script><script>
 render=()=>{
   renderer.setSize(innerWidth,innerHeight)
@@ -6,13 +12,20 @@ render=()=>{
   renderer.render(scene,camera)
   requestAnimationFrame(render)
 }
+reset.onclick=()=>{
+  scene.background=new THREE.Color("rgb("+red.value+","+green.value+","+blue.value+")")
+}
 setTimeout(()=>{
-scene=new THREE.Scene()
-scene.background=new THREE.Color("rgb("+prompt("Enter red value.")+","+prompt("Enter green value.")+","+prompt("Enter blue value.")+")")
-camera=new THREE.PerspectiveCamera(75,1,0.1,1000)
-document.body.style.margin=0
-renderer=new THREE.WebGLRenderer()
-document.body.appendChild(renderer.domElement)
-render()
+  scene=new THREE.Scene()
+  camera=new THREE.PerspectiveCamera(75,1,0.1,1000)
+  document.body.style.margin=0
+  renderer=new THREE.WebGLRenderer()
+  document.body.appendChild(renderer.domElement)
+  render()
+},1)
+setInterval(()=>{
+  if(red.value=""){red.value=0}
+  if(green.value=""){green.value=0}
+  if(blue.value=""){blue.value=0}
 },1)
 </script>
