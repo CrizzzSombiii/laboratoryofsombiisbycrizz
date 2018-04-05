@@ -1,7 +1,8 @@
 <div style="position: absolute; left: 0px; top: 0px;color:rgb(255,255,255)">
-<input id="red"type="number"size="3">
-<input id="green"type="number"size="3">
-<input id="blue"type="number"size="3">
+Background:
+<input id="red"type="number"style="width:16px">
+<input id="green"type="number"style="width:16px">
+<input id="blue"type="number"style="width:16px">
 <input id="reset"value="Reset."type="button"size="70"></input><br>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/91/three.js"></script><script>
@@ -27,5 +28,8 @@ setInterval(()=>{
   if(red.value==""){red.value=0}
   if(green.value==""){green.value=0}
   if(blue.value==""){blue.value=0}
+  if(255<red.value){red.value=255}
+  if(255<green.value){green.value=255}
+  if(255<blue.value){blue.value=255}
 },1)
 </script>
