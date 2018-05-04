@@ -1,3 +1,8 @@
 <script>
 net=new WebSocket("wss://multiplayer.scirra.com")
+  // Turn cross domain on 
+    var config = new HubConfiguration { EnableCrossDomain = true };
+
+    // This will map out to http://localhost:50001/signalr by default
+    app.MapHubs(config);
 </script>
