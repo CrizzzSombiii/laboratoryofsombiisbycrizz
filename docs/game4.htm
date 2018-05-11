@@ -1,0 +1,73 @@
+<script src="https://www.gstatic.com/firebasejs/5.0.2/firebase.js"></script>
+<script>
+setTimeout(()=>{
+  x=0
+  y=0
+  r=16+Math.floor(Math.random()*16)
+  k=[]
+  all={}
+  document.body.style.margin=0
+  c=document.createElement("canvas")
+  document.body.appendChild(c)
+  ctx=c.getContext("2d")
+  onkeydown=onkeyup=(e)=>{k[e.keyCode]=e.type=="keydown"}
+  i1=Math.floor(Math.random()*Math.pow(10,10))
+  firebase.initializeApp({
+    apiKey: "AIzaSyAme20gq8cZqQdSV4NJC9y9cpcIwABHhFU",
+    authDomain: "juego-de-prueba-b7614.firebaseapp.com",
+    databaseURL: "https://juego-de-prueba-b7614.firebaseio.com",
+    projectId: "juego-de-prueba-b7614",
+    storageBucket: "juego-de-prueba-b7614.appspot.com",
+    messagingSenderId: "466856809388"
+  })
+  firebase.database().ref('/var/').on('value',(event)=>{
+    all=event.val()
+  })
+  setInterval(()=>{
+    c.width=innerWidth
+    c.height=innerHeight
+    for(i2 in all){
+      ctx.fillStyle="rgba(0,255,0,1)"
+      ctx.fillRect(all[i2].x-all[i2].r,all[i2].y-all[i2].r,all[i2].r*2,all[i2].r*2)
+      ctx.lineWidth=4
+      ctx.strokeStyle="rgba(0,127,0,1)"
+      ctx.strokeRect(all[i2].x-all[i2].r,all[i2].y-all[i2].r,all[i2].r*2,all[i2].r*2)
+      firebase.database().ref("/var/"+i1).set({
+        x:x,
+        y:y,
+        r:r
+      })
+      for(i3 in all){
+        if(all[i2].x-all[i2].r<all[i3].x+all[i2].r){
+          if(all[i2].x+all[i2].r>all[i3].x-all[i2].r){
+            if(all[i2].y-all[i2].r<all[i3].y+all[i2].r){
+              if(all[i2].y+all[i2].r>all[i3].y-all[i2].r){
+                if(all[i2].r<all[i3].r){
+                  all[i2].r=0
+                  all[i3].r=all[i2].r+all[i3].r
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    if(k[37]){
+      x-=1
+    }
+    if(k[38]){
+      y-=1
+    }
+    if(k[39]){
+      x+=1
+    }
+    if(k[40]){
+      y+=1
+    }
+    if(x<-32){x=innerWidth+32}
+    if(innerWidth+32<x){x=-32}
+    if(y<-32){y=innerHeight+32}
+    if(innerHeight+32<y){y=-32}
+  },1)
+})
+</script>
